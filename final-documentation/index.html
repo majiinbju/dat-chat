@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>DAT CHAT DOCUMENTATION</title>
+    <link rel="stylesheet" type="text/css" href="build/style.css" />
+    <script type="text/javascript" src="build/network-interfacing.js"></script>
+   <link href="https://fonts.googleapis.com/css?family=Ovo" rel="stylesheet">
+  </head>
+  <body>
+
+
+
+    <div class="wrapper1">
+      
+      <h1> Anonymous Dat Chat</h1>
+      <p>The anonymous dat chat aims to build a community where anonymity is secured. Think of it as a messenger from back in the day, such as MSN or AOL. It gives one the ability to customize their name and maintain anonymity whilst chatting with others. </p>
+     
+      <div class="frame2">
+      </div>
+
+    </div>
+
+    <div class="wrapper2">
+
+      <h2>How do I install it?</h2>
+      <p>Installation for the Anonymous Dat Chat is simple and easy. Simply assign <a href="dat://datchat.hashbase.io/" target=blank>this url</a> to a button, div or header and it will redirect you to the chat.</p>
+
+    </div>
+
+    <div class="wrapper3">
+
+      <h2>How does it work?</h2>
+      <p>This function makes use of the DatPeer API and connects & identifies peers based on their Dat URL. This works to ensure anonymity and safety.</p>
+
+    </div>
+
+    <div class="wrapper4">
+
+
+    <h2>JavaScript Markdown</h2>
+
+    <div class="markupbox">
+      
+      
+      <textarea readonly> 
+     
+      window.onload = function() {
+        
+        // doc elements
+        
+        var peersNum = document.getElementById("peersNum");
+        var peersList = document.getElementById("peersList");
+
+        // dat vars for your personal page (automatically generated)
+        // var url = "dat://"
+        
+        var url = window.location.toString(),
+          archive = new DatArchive(url);
+
+        // async function to start listening for peers:
+        
+          var getPeers = async function(archive) {
+              console.log("in async: ", archive);
+              var peers = await experimental.datPeers.list();
+              return peers;
+          };
+
+        getPeers(archive).then(result => {
+          updateUI(result);
+          });
+
+        // Update the ui when data changes
+        
+              function updateUI(result) {
+                var peersListText = ``;
+                result.forEach(peerData => {
+                  console.log(peerData.id);
+                  var peer = `<li>${peerData.id + " " + peerData.sessionData}</li>`;
+                  peersListText = peersListText + peer;
+                });
+      
+                console.log("then: ", result);
+                peersNum.innerHTML = `${result.length} `;
+                peersList.innerHTML = peersListText;
+              }
+
+        // when a peer comes online
+        
+              experimental.datPeers.addEventListener("connect", ({ peer }) => {
+                console.log(peer.id, "has connected");
+                 getPeers(archive).then(result => {
+                   updateUI(result);
+                    });
+              });
+
+        // when a peer goes offline
+        
+            experimental.datPeers.addEventListener("disconnect", ({ peer }) => {
+              console.log(peer.id, "has disconnected");
+              // getPeers(archive).then(result => {
+              //   updateUI(result);
+              // });
+            });
+        
+        experimental.datPeers.addEventListener('message', ({peer, message}) => {
+          console.log(peer.id, 'has sent the following message:', message)
+          updateMessagesUI(message)
+        })
+        
+        experimental.datPeers.addEventListener('session-data', ({peer}) => {
+          console.log(peer.id, 'has set their session data to', peer.sessionData)
+        })
+
+        
+        // a message a peer broadcasts
+        
+            experimental.datPeers.broadcast({
+            name: "anything",
+            content: window.location.toString()
+              });  
+            };
+
+      </textarea>
+
+    </div>
+
+    </div>
+
+    <div class="wrapper5">
+
+
+      <a href="YOURFUNCTION.js" download><h2>Download the JS File here</h2></a>
+
+    </div>
+
+
+
+    <!-- interface for if you want to post: -->
+
+    <script type="text/javascript">
+       
+      window.onload = function() {
+        // doc elements
+        var peersNum = document.getElementById("peersNum");
+        var peersList = document.getElementById("peersList");
+
+        // dat vars for your personal page (automatically generated)
+        // var url = "dat://"
+        var url = window.location.toString(),
+          archive = new DatArchive(url);
+
+        // we want an async function to start listening for peers:
+        var getPeers = async function(archive) {
+          console.log("in async: ", archive);
+          var peers = await experimental.datPeers.list();
+          return peers;
+        };
+
+        getPeers(archive).then(result => {
+          updateUI(result);
+        });
+
+        // Update the ui when data changes
+        function updateUI(result) {
+          var peersListText = ``;
+
+          result.forEach(peerData => {
+            console.log(peerData.id);
+            var peer = `<li>${peerData.id + " " + peerData.sessionData}</li>`;
+            peersListText = peersListText + peer;
+          });
+
+          console.log("then: ", result);
+          peersNum.innerHTML = `${result.length} `;
+          peersList.innerHTML = peersListText;
+        }
+
+        // when a peer comes online
+        experimental.datPeers.addEventListener("connect", ({ peer }) => {
+          console.log(peer.id, "has connected");
+          // getPeers(archive).then(result => {
+          //   updateUI(result);
+          // });
+        });
+
+        // when a peer goes offline
+        experimental.datPeers.addEventListener("disconnect", ({ peer }) => {
+          console.log(peer.id, "has disconnected");
+          // getPeers(archive).then(result => {
+          //   updateUI(result);
+          // });
+        });
+        
+        experimental.datPeers.addEventListener('message', ({peer, message}) => {
+          console.log(peer.id, 'has sent the following message:', message)
+          updateMessagesUI(message)
+        })
+        
+        experimental.datPeers.addEventListener('session-data', ({peer}) => {
+          console.log(peer.id, 'has set their session data to', peer.sessionData)
+        })
+
+        /******************************************************************************/
+        // a message a peer broadcasts
+        experimental.datPeers.broadcast({
+          name: "anything",
+          content: window.location.toString()
+        });
+        
+      };
+    </script>
+  </body>
+</html>
