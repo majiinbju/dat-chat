@@ -1,0 +1,183 @@
+input {
+	
+   outline:none;
+}
+
+textarea{
+
+   outline:none;
+}
+
+body{
+	background:black;
+	margin:0;
+	color:white;
+	font-family: Helvetica;
+	overflow:hidden;
+}
+
+#wrapper{
+	width:100vw;
+	height:80vh;
+	position: relative;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+#wrapper h1 {
+	font-size:1em;
+	top:3em;
+	left:19.25em;
+	color:#78F503;
+	position:relative;
+}
+
+#wrapper h2 {
+	font-size:1em;
+	top:0.5em;
+	left:12em;
+	color:#78F503;
+	position:relative;
+}
+
+#peersList {
+	width:auto;
+	margin-bottom:0;
+}
+
+
+#box{
+	background:black;
+	width:50vw;
+	height:20vh;
+	position: absolute;
+    margin: auto;
+    top: 0.5;
+    right: 0;
+    bottom: 0;
+    left: 0;
+	padding:10px;
+	border-style:solid;
+	border-color:white;
+}
+
+
+#box2{
+	background:none;
+	border-style: solid;
+	border-color:white;
+	width:50vw;
+	height:50vh;
+	position: absolute;
+	overflow: hidden;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+	padding:10px;
+}
+
+#box2 ul {
+	
+	font-family: arial;
+	list-style: none;
+	max-width:50vw;
+	background:;
+	height:40vh;
+	white-space: pre-wrap;      /* CSS3 */   
+   white-space: -moz-pre-wrap; /* Firefox */    
+   white-space: -pre-wrap;     /* Opera <7 */   
+   white-space: -o-pre-wrap;   /* Opera 7 */    
+   word-wrap: break-word;
+   margin-top:2px;
+   overflow: hidden;
+   overflow-y: scroll;
+   margin-left:-5%;
+}
+
+
+#inner{
+	width:100%;
+	height:80%;
+	position:relative;
+	margin-bottom:25px;
+}
+
+#box button {
+	background:black;
+	padding:1em;
+	font-size:1em;
+	color:white;
+	position:relative;
+	left:50%;
+	top:20%;
+	transform:perspective(1px) translate(-50%);
+	border-style:solid;
+	border-width:2px;
+	border-color:white;
+}
+
+#name input {
+	background:black;
+	padding:1em;
+	font-size:1em;
+	color:white;
+	position:relative;
+	left:15%;
+	margin-top:10.95%;
+	transform:perspective(1px) translate(-50%);
+	border-style:solid;
+	border-width:2px;
+	border-color:white;
+}
+
+
+#box button:hover {
+	color:black;
+	background:white;
+}
+
+#inner textarea {
+	border-style:none;
+	background:black;
+	margin:0;
+	color:white;
+	font-size:1em;
+	padding:1em;
+	overflow:hidden;
+	width:93%;
+	height:150%;
+	resize:none;
+	outline:0;
+}
+
+#inner p{
+	width:100%;
+	height:60%;
+	margin:0;
+	background:;
+	overflow:none;
+}
+
+#box::-webkit-scrollbar {
+    width:20px !important;
+    height:10px !important;
+    margin-top:2% !important;
+    margin-right:2% !important;
+    position: relative !important;
+    padding:3em !important;
+
+}
+
+#box::-webkit-scrollbar-thumb {
+  background-color: white !important;
+    top:20% !important;
+    right:20% !important;
+    position: relative !important;
+    padding:3em !important;
+     height:5px !important;
+}

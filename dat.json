@@ -1,0 +1,8 @@
+{
+  "title": "ANON CHAT",
+  "experimental": {
+    "apis": [
+      "datPeers"
+    ]
+  }
+}

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>ANONYMOUS DAT CHAT</title>
+    <link rel="stylesheet" type="text/css" href="build/style.css" />
+    <script type="text/javascript" src="build/network-interfacing.js"></script>
+   <link href="https://fonts.googleapis.com/css?family=Ovo" rel="stylesheet">
+  </head>
+  <body>
+    <!-- your profile: -->
+  <!--     <h1>Data about the peers connected to this site:</h1>
+      <h2 id="peers">Num: <span id="peersNum"></span></h2>
+      <ul id="peersList"></ul> -->
+
+
+
+
+
+<div id="wrapper">
+
+  <h1 id="peers"> <span id="peersNum"></span> online</h1>
+
+    <div id="box2">
+
+      <ul id="test"></ul>
+
+    </div>
+
+    <div id="box">
+
+      <div id ="inner">
+
+        <p> <textarea id="innertext" placeholder="Your text here"></textarea>
+          <div id="name"><input type="text" id="anonName" placeholder="Name here"></div>
+
+
+        </p>
+        
+       <!--  <input type = "text"/> -->
+
+      </div>
+      
+      <!-- 
+        <form onclick="message()">
+          <textarea id="inner"></textarea>
+          <input id="name"/>
+          <button></button>
+        </form>
+      -->
+
+      <button onclick="sendMessagetoPeers(document.getElementById('innertext').value, document.getElementById('anonName').value) " value="sendMessage">send message</button>
+
+   
+    </div>
+
+  </div>
+
+    <!-- interface for if you want to post: -->
+
+    <script type="text/javascript">
+      
+        let messages = [];
+
+        var sendMessagetoPeers = async function(message, author) {
+          var message = {
+            content: message,
+            name: author,
+            archive: window.location.toString()
+          }
+
+          experimental.datPeers.broadcast(message);
+          updateMessagesUI(message)
+
+          document.getElementById('innertext').value = "";
+
+        }
+
+        var updateMessagesUI = async function(message) {
+          var test = document.getElementById("test");
+          var messageUIContent = ``;
+
+          console.log(message)
+
+          // read the message after the click
+          //add the message to the end of the messages array
+          messageObj = {
+            content: message.content,
+            name: message.name
+          }
+
+          messages.push(messageObj)
+
+          // loop through all the existing messages and update the UI
+          messages.forEach(message => {
+            console.log(message);
+            var peerMessage = `<li>${message.content} <i>written by ${message.name}</i></li>`;
+            messageUIContent = messageUIContent + peerMessage;
+          });
+
+          test.innerHTML = messageUIContent;
+
+          // var test = document.getElementById("test");
+          // test.innerHTML = '<span>' + message + '<span>'
+        };
+        
+        /*updateMessagesUI({content: 'world', name: "anon"})*/
+        
+        function sendMessage(){
+          console.log('trying to send')
+          message('new')
+        }
+        
+      window.onload = function() {
+        // doc elements
+        var peersNum = document.getElementById("peersNum");
+        var peersList = document.getElementById("peersList");
+
+        // dat vars for your personal page (automatically generated)
+        // var url = "dat://"
+        var url = window.location.toString(),
+          archive = new DatArchive(url);
+
+        // we want an async function to start listening for peers:
+        var getPeers = async function(archive) {
+          console.log("in async: ", archive);
+          var peers = await experimental.datPeers.list();
+          return peers;
+        };
+
+        getPeers(archive).then(result => {
+          updateUI(result);
+        });
+
+        // Update the ui when data changes
+
+        function updateUI(result) {
+
+            var peersListText = ``;
+
+            result.forEach(peerData => {
+              console.log(peerData.id);
+              peersListText = peer + "welcome";
+            });
+
+            console.log("then: ", result);
+            peersNum.innerHTML = `${result.length} `;
+            peersList.innerHTML = peersListText;
+          
+        }
+
+
+        function updateUI(result) {
+          var peersListText = ``;
+
+          result.forEach(peerData => {
+            console.log(peerData.id);
+            var peer = `<h2>${peerData.id}</h2>`;
+            peersListText = peersListText + peer;
+          });
+
+          console.log("then: ", result);
+          peersNum.innerHTML = `${result.length} `;
+          peersList.innerHTML = peersListText;
+        }
+
+        // when a peer comes online
+        experimental.datPeers.addEventListener("connect", ({ peer }) => {
+          console.log(peer.id, "has connected");
+          // getPeers(archive).then(result => {
+          //   updateUI(result);
+          // });
+        });
+
+        // when a peer goes offline
+        experimental.datPeers.addEventListener("disconnect", ({ peer }) => {
+          console.log(peer.id, "has disconnected");
+          // getPeers(archive).then(result => {
+          //   updateUI(result);
+          // });
+        });
+        
+        experimental.datPeers.addEventListener('message', ({peer, message}) => {
+          console.log(peer.id, 'has sent the following message:', message)
+          updateMessagesUI(message)
+        })
+        
+        experimental.datPeers.addEventListener('session-data', ({peer}) => {
+          console.log(peer.id, 'has set their session data to', peer.sessionData)
+        })
+
+        /******************************************************************************/
+        // a message a peer broadcasts
+        experimental.datPeers.broadcast({
+          name: "anything",
+          content: window.location.toString()
+        });
+        
+      };
+    </script>
+  </body>
+</html>
