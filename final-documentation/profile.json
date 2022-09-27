@@ -1,10 +1,10 @@
 {
-	"username" : "vivek.",
-	"bio" : "Junior at Parsons studying Communication Design",
-	"datUrl"	: "dat://34fcc6dc0df4dd1ca971f92ba12599cbb940b1dac22a5356699eba67aa886fc2/",
-	"email" : "bajav574@newschool.edu",
-	"message" : "yo",
-	"users" : [
-		"dat://ca046a88ea51b38c720b26ae846a07c268232f8b3c169d25875c3e4422d4c0f1/"
-	]
+  "username": "vivek.",
+  "bio": "Junior at Parsons studying Communication Design",
+  "datUrl": "dat://34fcc6dc0df4dd1ca971f92ba12599cbb940b1dac22a5356699eba67aa886fc2/",
+  "email": "bajav574@newschool.edu",
+  "message": "yo",
+  "users": [
+    "dat://ca046a88ea51b38c720b26ae846a07c268232f8b3c169d25875c3e4422d4c0f1/"
+  ]
 }

@@ -1,218 +1,90 @@
-@font-face {
-font-family: "auth";
-src: url("auth.otf");
+body {
+  background: #f2f2f2;
+  color: black;
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 1.5rem;
+  margin: 3rem;
+  overflow-x: hidden;
 }
 
-
-body{
-	background:#f2f2f2;
-	margin:0;
-	color:black;
-	font-family: "auth";
-	font-weight: 100;
-	margin:0;
-	overflow-x:hidden;
+h1 {
+  grid-column: 1 / -1;
+  margin: 0rem;
+  grid-row: 1 / 2;
 }
 
-.wrapper1 {
-	width:100vw;
-	height:140vh;
-	position:absolute;
-	background:none;
-	margin:0;
-	overflow:hidden;
+h2 {
+  margin: 0rem;
 }
 
-.wrapper2 {
-	top:130vh;
-	width:100vw;
-	height:40vh;
-	position:absolute;
-	background:none;
-	margin:0;
-	overflow:hidden;
+a {
+  color: blue;
 }
 
-.wrapper3 {
-	top:160vh;
-	width:100vw;
-	height:50vh;
-	position:absolute;
-	background:none;
-	margin:0;
-	overflow:hidden;
+main {
+  width: 100%;
+  height: 100%;
 }
 
-.wrapper4{
-	top:200vh;
-	width:100vw;
-	height:120vh;
-	position:absolute;
-	margin:0;
-	background:#f2f2f2;
-
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  width: 100%;
+  height: 100%;
 }
 
-.wrapper5{
-		top:320vh;
-	width:100vw;
-	height:20vh;
-	position:absolute;
-	margin:0;
-	background:#f2f2f2;
+.text {
+  margin-top: 1rem;
+  grid-column: 1 / -1;
+  grid-row: 2 / 3;
 }
 
-.markupbox {
-	top:0em;
-	left:6em;
-	width:60vw;
-	height:100vh;
-	position:relative;
-	background:none;
-
+.img {
+  max-width: 100%;
+  align-self: center;
+  justify-self: center;
+  margin: 3rem;
+  grid-column: 3 / -3;
+  grid-row: 3 / 4;
 }
 
-.markupbox textarea {
-	width:100%;
-	height:100%;
-	font-size:1.2em;
-	border:none;
-   resize: none;
-   outline:none;
-   background:none;
-   border-style:solid;
-	border-width: 2px;
-	border-color:black;
-
+textarea {
+  font-size: 1.5rem;
+  margin: 2rem 0rem;
+  padding: 3rem;
+  border: none;
+  resize: none;
+  outline: none;
+  background: darkslategray;
+  color: palegreen;
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
+  grid-column: 1 / -1;
+  height: 100vh;
+  grid-row: 2 / 4;
 }
 
 .tag {
-	background:black;
-	color:white;
-	width:auto;
+  background: black;
+  color: white;
+  width: auto;
 }
-
-
-.frame2{
-	width:55vw;
-	height:82.5vh;
-	position:relative;
-	left:15em;
-	top:5em;
-	background:url(feature_1.gif) center no-repeat;
-	background-size:contain;
-	outline:solid;
-	outline-offset:10px;  
-	outline-style: solid;
-	outline-color:black;
-}
-
-
-.wrapper1 h1{
-	font-family:times;
-	font-size:2em;
-	position:relative;
-	left:3em;
-	top:2em;
-	text-decoration: underline;
-
-}
-
-.wrapper2 h2{
-	font-family:times;
-	font-size:2em;
-	position:relative;
-	left:3em;
-	top:2em;
-	text-decoration: underline;
-
-}
-
-.wrapper3 h2{
-	font-family:times;
-	font-size:2em;
-	position:relative;
-	left:3em;
-	top:2em;
-	text-decoration: underline;
-
-}
-
-.wrapper4 h2{
-	font-family:times;
-	font-size:2em;
-	position:relative;
-	left:3em;
-	text-decoration: underline;
-
-}
-
-.wrapper5 h2{
-	font-family:times;
-	font-size:2em;
-	position:relative;
-	left:3em;
-	text-decoration: underline;
-
-}
-
-
-.wrapper2 a {
-	color:blue;
-	font-style: italic;
-}
-
-.wrapper5 a {
-	color:blue;
-	font-style: italic;
-}
-
- p {
- 	font-family:times;
-	font-size:1.8em;
-	position:relative;
-	left:3.35em;
-	top:1.8em;
-	width:70vw;
-
-}
-
-
-body::-webkit-scrollbar {
-    width:20px !important;
-    height:10px !important;
-    margin-top:2% !important;
-    margin-right:2% !important;
-    position: relative !important;
-    padding:3em !important;
-
-}
-
-body::-webkit-scrollbar-thumb {
-  background-color: gray !important;
-    top:20% !important;
-    right:20% !important;
-    position: relative !important;
-    padding:3em !important;
-     height:5px !important;
-}
-
 
 textarea::-webkit-scrollbar {
-    width:20px !important;
-    height:10px !important;
-    margin-top:2% !important;
-    margin-right:2% !important;
-    position: relative !important;
-    padding:3em !important;
-
+  width: 20px !important;
+  height: 10px !important;
+  margin-top: 2% !important;
+  margin-right: 2% !important;
+  position: relative !important;
+  padding: 3em !important;
 }
 
 textarea::-webkit-scrollbar-thumb {
   background-color: black !important;
-    top:20% !important;
-    right:20% !important;
-    position: relative !important;
-    padding:3em !important;
-     height:5px !important;
+  top: 20% !important;
+  right: 20% !important;
+  position: relative !important;
+  padding: 3em !important;
+  height: 5px !important;
 }
